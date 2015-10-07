@@ -6,10 +6,13 @@ $this->breadcrumbs=array(
 	'Place Models',
 );
 
+if(UserUtility::isAdmin()){
+
 $this->menu=array(
 	array('label'=>'Create PlaceModel', 'url'=>array('create')),
 	array('label'=>'Manage PlaceModel', 'url'=>array('admin')),
 );
+}
 ?>
 
 <h1>Place Models</h1>
