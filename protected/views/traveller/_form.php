@@ -33,14 +33,8 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'traveller_password'); ?>
-		<?php echo $form->textField($model,'traveller_password',array('size'=>60,'maxlength'=>200)); ?>
+		<?php echo $form->passwordField($model,'traveller_password',array('size'=>60,'maxlength'=>200)); ?>
 		<?php echo $form->error($model,'traveller_password'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'traveller_level'); ?>
-		<?php echo $form->textField($model,'traveller_level'); ?>
-		<?php echo $form->error($model,'traveller_level'); ?>
 	</div>
 
 	<div class="row buttons">

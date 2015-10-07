@@ -15,8 +15,8 @@ $this->menu=array(
 	array('label'=>'Manage TravellerModel', 'url'=>array('admin')),
 );
 ?>
-
-<h1>View TravellerModel #<?php echo $model->traveller_id; ?></h1>
+<h1>Hello <?php echo Yii::app()->session['travellername'] ?></h1>
+Traveller ID: <?php echo $model->traveller_id; ?>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
