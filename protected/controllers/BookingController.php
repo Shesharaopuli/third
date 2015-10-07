@@ -162,19 +162,28 @@ class BookingController extends Controller
 	 * Function for booking the place that was booked by Traveller
 	 */
 	public function actionBookMyPlace()
-	{
-		
+	{	
 		$model=new BookingModel;
-	if (isset($_POST))
-	{
-		$model->booking_place_id=$_POST['placeid'];
-		$model->booking_traveller_id=Yii::app()->session['travellerid'];
-		$model->booking_amount=$_POST['placeprice'];
-		if($model->save())
+		if (isset($_POST)&&isset(Yii::app()->session['travellerid']))
 		{
-		$this->render('view',array('model'=>$model));
+			
+			$model->booking_place_id=$_POST['placeid'];
+			$model->booking_traveller_id=Yii::app()->session['travellerid'];
+			$model->booking_amount=$_POST['placeprice'];
+			if($model->save())
+			{
+			$this->render('view',array('model'=>$model));
+			}
 		}
-	}
+		else 
+		{
+			//$path=Yii::app()->createUrl('traveller/create');
+			$error="*You must be a User for this site to Book a Place";
+			$this->render('//traveller/create',array('model'=>$model,
+					'error'=>$error,
+			));
+			
+		}
 	}
 	
 	/**
