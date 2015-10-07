@@ -75,6 +75,7 @@ class LoginForm extends CFormModel
 			$cmd->where = "traveller_email='$this->username'";
 			$result = $cmd->query();
 			foreach ($result as $row) {
+				Yii::app()->session['travellerid']=$row['traveller_id'];
 				Yii::app()->session['travellername']=$row['traveller_name'];
 				Yii::app()->session['travellerlevel']=$row['traveller_level'];
 			}

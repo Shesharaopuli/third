@@ -21,5 +21,9 @@
 	<?php echo CHtml::encode($data->place_price); ?>
 	<br />
 
-
+	<form method="post" action="<?php echo Yii::app()->createUrl('/booking/BookMyPlace'); ?>" >
+	<input type="hidden" name='placeid' value="<?php echo $data->place_id; ?>">
+	<input type="hidden" name='placeprice'  value="<?php echo $data->place_price; ?>">
+	<input type='submit' value='Book This Place'>
+	</form>
 </div>

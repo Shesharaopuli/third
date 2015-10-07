@@ -16,7 +16,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>View PlaceModel #<?php echo $model->place_id; ?></h1>
+<h1>Place Details</h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
