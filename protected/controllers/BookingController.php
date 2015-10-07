@@ -28,15 +28,15 @@ class BookingController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','BookMyPlace'),
+				'actions'=>array('BookMyPlace'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','BookMyPlace'),
+				'actions'=>array('BookMyPlace','ViewMyBooking'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete','BookMyPlace'),
+				'actions'=>array('admin','delete','BookMyPlace','update','delete','index'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -177,13 +177,29 @@ class BookingController extends Controller
 		}
 		else 
 		{
-			//$path=Yii::app()->createUrl('traveller/create');
-			$error="*You must be a User for this site to Book a Place";
-			$this->render('//traveller/create',array('model'=>$model,
+			$path=Yii::app()->createUrl('traveller/create');
+			$error="* You must be a User for this site to Book a Place";
+			$this->redirect($path,array('model'=>$model,
 					'error'=>$error,
 			));
 			
 		}
+	}
+	
+	/*
+	 * function to only view self booking 
+	 */
+	public function actionViewMyBooking()
+	{
+		$id=Yii::app()->session["travellerid"];
+		$cmd = Yii::app()->db->createCommand();
+		$cmd->select = '*';
+		$cmd->from = 'booking';
+		$cmd->where = 'booking_traveller_id='.$id;
+		$result = $cmd->query();
+		$this->render('selfbookings',array(
+				'result'=>$result,
+		));
 	}
 	
 	/**

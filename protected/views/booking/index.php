@@ -12,7 +12,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>Booking Models</h1>
+<h1> Total Booking </h1>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,
