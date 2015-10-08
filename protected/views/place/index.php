@@ -11,6 +11,7 @@ if(UserUtility::isAdmin()){
 $this->menu=array(
 	array('label'=>'Create PlaceModel', 'url'=>array('create')),
 	array('label'=>'Manage PlaceModel', 'url'=>array('admin')),
+	array('label'=>'AJAX PlaceModel', 'url'=>array('AddPlaceAjax')),
 );
 }
 ?>

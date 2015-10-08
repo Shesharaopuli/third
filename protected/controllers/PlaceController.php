@@ -36,7 +36,7 @@ class PlaceController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete','create','update'),
+				'actions'=>array('admin','delete','create','update','AddPlaceAjax'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -56,6 +56,7 @@ class PlaceController extends Controller
 		));
 	}
 
+	
 	/**
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
@@ -79,6 +80,34 @@ class PlaceController extends Controller
 		));
 	}
 
+	/**
+	 * 
+	 */
+	public function actionAddPlaceAjax()
+	{
+		$model= new PlaceModel;
+		if(isset($_POST['PlaceModel']))
+			{
+				$model->attributes=$_POST['PlaceModel'];
+				
+				if($model->save())
+				{
+					echo "<p class='success'>You Place has been Successfully added</p>";
+				}
+				else
+				{
+					echo '<p class="error">Failed to add Place to database</p>';
+				} 
+			}
+			else
+			{
+				$this->render('addplace',array(
+						'model'=>$model,
+				));
+			}
+	}
+	
+	
 	/**
 	 * Updates a particular model.
 	 * If update is successful, the browser will be redirected to the 'view' page.
