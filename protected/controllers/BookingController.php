@@ -196,7 +196,8 @@ class BookingController extends Controller
 		->select('p.place_name,p.place_address,b.booking_amount,b.booking_id')
 		->from('place p')
 		->join('booking b', 'b.booking_place_id=p.place_id')
-		->where('b.booking_traveller_id='.$id);
+		->where('b.booking_traveller_id='.$id)
+		->order('b.booking_id');
 		$result = $cmd->queryAll();
 		$this->render('selfbookings',array(
 				'result'=>$result,
