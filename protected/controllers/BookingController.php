@@ -192,16 +192,16 @@ class BookingController extends Controller
 	public function actionViewMyBooking()
 	{
 		$id=Yii::app()->session["travellerid"];
-		$cmd = Yii::app()->db->createCommand();
-		$cmd->select = '*';
-		$cmd->from = 'booking';
-		$cmd->where = 'booking_traveller_id='.$id;
-		$result = $cmd->query();
+		$cmd = Yii::app()->db->createCommand()
+		->select('p.place_name,p.place_address,b.booking_amount,b.booking_id')
+		->from('place p')
+		->join('booking b', 'b.booking_place_id=p.place_id')
+		->where('b.booking_traveller_id='.$id);
+		$result = $cmd->queryAll();
 		$this->render('selfbookings',array(
 				'result'=>$result,
 		));
 	}
-	
 	/**
 	 * Performs the AJAX validation.
 	 * @param BookingModel $model the model to be validated

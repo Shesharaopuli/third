@@ -37,8 +37,8 @@
 				array('label'=>'Sign Up', 'url'=>array('/traveller/create'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'View Travellers', 'url'=>array('/traveller/index'), 'visible'=>UserUtility::isAdmin()),
 				array('label'=>'Places', 'url'=>array('/place/index'), 'visible'=>UserUtility::isAdmin()),
+				array('label'=>'Book a Place', 'url'=>array('/place/index'),'visible'=>!UserUtility::isAdmin()),
 				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
-				array('label'=>'Book a Place', 'url'=>array('/place/index'),'visible'=>!UserUtility::isAdmin())
 			),
 		)); ?>
 	</div><!-- mainmenu -->
